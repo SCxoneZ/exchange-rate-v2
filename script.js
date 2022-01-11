@@ -11,6 +11,8 @@ doLoop();
 swapBtn.addEventListener('click', () => {
   const toVal = selectTo.value;
   const fromVal = selectFrom.value;
+  selectTo.value = fromVal;
+  selectFrom.value = toVal;
 })
 
 btnExchange.addEventListener('click', async () => {
