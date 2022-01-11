@@ -42,7 +42,7 @@ body{
 
 @keyframes swapAnimation{
   to{
-    transform: rotate(180deg);
+    transform: rotate(-180deg);
   }
 }
 .swap-btn:active{
