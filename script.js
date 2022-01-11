@@ -3,15 +3,25 @@
 const container = document.querySelector('.container');
 const selectTo = document.querySelector('select.to');
 const selectFrom = document.querySelector('select.from');
-const output = document.querySelector('.output');
-doLoop();
+const result = document.querySelector('.result');
+const swapBtn = document.querySelector('.swap-btn');
 
 const input = document.querySelector('input');
 const btnExchange = document.querySelector('.btn-exchange');
+doLoop();
+
+swapBtn.addEventListener('click', () => {
+  const toVal = selectTo.value;
+  const fromVal = selectFrom.value;
+  selectTo.value = fromVal;
+  selectFrom.value = toVal;
+})
+
 btnExchange.addEventListener('click', async () => {
   if(input.value && !isNaN(parseInt(input.value))){
     const data = await getData(exchangeUrl(selectFrom.value));
-    output.innerHTML = data.conversion_rates[selectTo.value] * parseInt(input.value);
+    result.innerHTML = `${data.conversion_rates[selectTo.value] * parseInt(input.value)} ${selectTo.value}`;
+    swapBtn.style.transform = 'rotate(180deg)';
   }
 });
 
@@ -40,8 +50,10 @@ async function doLoop() {
         const optionFrom = document.createElement('option');
         optionTo.innerHTML = c.flag + c.name.common;
         optionTo.setAttribute('value', Object.keys(c.currencies)[0]);
+        // optionTo.dataset.symbol = c.currencies[Object.keys(c.currencies)[0]].symbol
         optionFrom.innerHTML = c.flag + c.name.common;
         optionFrom.setAttribute('value', Object.keys(c.currencies)[0]);
+        // optionFrom.dataset.symbol = c.currencies[Object.keys(c.currencies)[0]].symbol;
         selectTo.appendChild(optionTo);
         selectFrom.appendChild(optionFrom);
       }

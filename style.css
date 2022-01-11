@@ -38,11 +38,15 @@ body{
   background-color: transparent;
   background-image: url(img/arrows.png);
   background-size: cover;
-  transition: .3s;
 }
 
-.swap-btn:hover{
-  transform: rotate(180deg);
+@keyframes swapAnimation{
+  to{
+    transform: rotate(180deg);
+  }
+}
+.swap-btn:active{
+  animation: swapAnimation .15s 1 backwards;
 }
 
 .btn-exchange{
@@ -62,3 +66,5 @@ body{
   border: 1px solid #D6FFFA;
   background-color: transparent;
 }
+
+.output{font-size: 12.5px;}
